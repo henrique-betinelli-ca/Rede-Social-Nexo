@@ -1,0 +1,133 @@
+.Areacadastro{
+    width: 450px;
+}
+.MenuInicio{ 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10%;
+}
+input{
+    margin: 15px 0;
+}
+.AreaEntrar{
+    margin-top: 50px;
+    width: 450px;
+}
+.Alerta{
+    margin: 30px 20px;
+}
+nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 20px;
+}
+header{
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+a{
+    text-decoration: none;
+    color: #cccccc;
+    text-transform: none;
+}
+ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin-right: 2px;
+    text-decoration: none;
+}
+li{
+    text-decoration: none;
+    padding: 12px;
+}
+ul:hover a:hover{
+    color: #1439be;
+}
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.foto-post-inicio{
+    width: 550px;
+    height: 450px;
+    object-fit: cover;
+}
+.foto-user-inicio{
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+.user-post{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 12px 0;
+}
+.post-inicio, .campo-adicionar-post, .texto-criar-post {
+    margin: 45px 0;
+}
+.logo-Nexo{
+    margin: 0 10px;
+    width: 100px;
+    object-fit: cover;
+}
+.AlertaInicio{
+    width: 90%;
+}
+.campo-post{
+margin: 35px 0;
+}
+.foto-user-perfil{
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.painel-seguidor{
+    display: flex;
+    flex-direction: row;
+    margin-top: 50px;
+}
+.dados-seguidor{
+    padding: 10px;
+    margin: 0 12px;
+}
+.dados-perfil{
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.dados-usuario{
+    margin: 18px 0;
+}
+.post{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.foto-user-feed-perfil{
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+.foto-post-perfil{
+    width: 400px;
+    height: 300px;
+    object-fit: cover;
+}
+.post-perfil{
+    margin: 75px 50px;
+}
