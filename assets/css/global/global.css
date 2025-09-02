@@ -1,0 +1,48 @@
+input{
+    margin: 15px 0;
+}
+nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 20px;
+}
+header{
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+a{
+    text-decoration: none;
+    color: #cccccc;
+    text-transform: none;
+}
+ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin-right: 2px;
+    text-decoration: none;
+}
+li{
+    text-decoration: none;
+    padding: 12px;
+}
+ul:hover a:hover{
+    color: #1439be;
+}
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.logo-Nexo{
+    margin: 0 10px;
+    width: 100px;
+    object-fit: cover;
+}
+.Alerta{
+    margin: 30px 20px;
+}

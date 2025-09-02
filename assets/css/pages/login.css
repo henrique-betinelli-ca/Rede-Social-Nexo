@@ -1,0 +1,16 @@
+@import '../global/global.css';
+
+.Areacadastro{
+    width: 450px;
+}
+.MenuInicio{ 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10%;
+}
+.AreaEntrar{
+    margin-top: 50px;
+    width: 450px;
+}

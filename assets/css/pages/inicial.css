@@ -1,0 +1,26 @@
+@import '../global/global.css';
+
+.AlertaInicio{
+    width: 90%;
+}
+.post-inicio{
+    margin: 45px 0;
+}
+.user-post{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 12px 0;
+}
+.foto-post-inicio{
+    width: 550px;
+    height: 450px;
+    object-fit: cover;
+}
+.foto-user-inicio{
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 8px;
+}

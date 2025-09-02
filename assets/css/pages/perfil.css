@@ -1,0 +1,46 @@
+@import '../global/global.css';
+
+.foto-user-perfil{
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.painel-seguidor{
+    display: flex;
+    flex-direction: row;
+    margin-top: 50px;
+}
+.dados-seguidor{
+    padding: 10px;
+    margin: 0 12px;
+}
+.dados-perfil{
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.dados-usuario{
+    margin: 18px 0;
+}
+.post{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.foto-user-feed-perfil{
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+.foto-post-perfil{
+    width: 400px;
+    height: 300px;
+    object-fit: cover;
+}
+.post-perfil{
+    margin: 75px 50px;
+}

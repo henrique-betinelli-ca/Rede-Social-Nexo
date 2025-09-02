@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <link rel="stylesheet" href="assets/css/pages/login.css">
+    <script src="assets/js/pages/login.js" type="module"></script>
     <title>Nexo</title>
 </head>
 <body>
@@ -29,7 +29,7 @@
                     <input id="Usuario_Cadrastro" class="form-control" type="text" placeholder="Nome de Usuário" aria-label="default input example">
                     <input id="Senha_Cadrastro" type="password" class="form-control" aria-describedby="passwordHelpBlock" placeholder="Senha">
                     <input id="Pais_Cadrastro" class="form-control" type="text" placeholder="País" aria-label="default input example">
-                    <button type="button" class="btn btn-primary" onclick="Cadastrar()">Cadastrar</button>
+                    <button id="btnCadastrar" type="button" class="btn btn-primary">Cadastrar</button>
                 </form>
             </div>
         </section>
@@ -52,7 +52,7 @@
                 <form>
                     <input id="Usuario_Entrada" class="form-control" type="text" placeholder="Nome de Usuário" aria-label="default input example">
                     <input id="Senha_Entrada" type="password" class="form-control" aria-describedby="passwordHelpBlock" placeholder="Senha">
-                    <button onclick="Entrar();" type="button" class="btn btn-primary">Entrar</button>
+                    <button id="btnEntrar" type="button" class="btn btn-primary">Entrar</button>
                 </form>
             </div>
         </section>
