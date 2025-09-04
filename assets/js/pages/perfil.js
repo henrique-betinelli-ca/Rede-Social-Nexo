@@ -1,6 +1,7 @@
+import { posts } from "../global/global.js"
+
 function CarregarPerfil() {
     let UsuarioLogado = JSON.parse(sessionStorage.getItem("UsuarioLogado"))
-    let posts = JSON.parse(sessionStorage.getItem("posts"))
     let postSalvo = JSON.parse(sessionStorage.getItem("novoPost"))
 
     document.getElementById("NomeUsuarioPerfil").textContent = UsuarioLogado.nomeUsuario

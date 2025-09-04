@@ -1,5 +1,3 @@
-import { posts  } from "../global/global.js"
-
 function PostarFoto() {
     let f = document.getElementById("fotoPost")
     let l = document.getElementById("legendaPost")
@@ -12,9 +10,6 @@ function PostarFoto() {
 
     let UsuarioLogado = JSON.parse(sessionStorage.getItem("UsuarioLogado"))
     let novoPost = {usuario: UsuarioLogado.Usuario, legenda: legenda}
-
-    posts.push(legenda)
-    sessionStorage.setItem("posts", JSON.stringify(posts))
 
     sessionStorage.setItem("novoPost", JSON.stringify(novoPost))
     sessionStorage.setItem("PostSucesso", "true")

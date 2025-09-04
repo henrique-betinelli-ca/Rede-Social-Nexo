@@ -6,12 +6,6 @@
 .post-inicio{
     margin: 45px 0;
 }
-.user-post{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin: 12px 0;
-}
 .foto-post-inicio{
     width: 550px;
     height: 450px;
