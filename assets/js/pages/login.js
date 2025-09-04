@@ -13,12 +13,14 @@ function Cadastrar() {
     let p = document.getElementById('Pais_Cadrastro')
     let pais = p.value
 
+    document.getElementById('AlertaPreencherCadastro').classList.add("d-none")
+    document.getElementById('AlertaUsuario').classList.add("d-none")
+
     if(n.value.trim() == '' || u.value.trim() == '' || s.value.trim() == '' || p.value.trim() == '') {
         document.getElementById('AlertaPreencherCadastro').classList.remove("d-none")
         return
     }
 
-    document.getElementById('AlertaPreencherCadastro').classList.add("d-none")
     let user = usuarios.find(u => u.Usuario === usuario)
     
     if(user){
@@ -26,8 +28,6 @@ function Cadastrar() {
         limparCampos(u)
         return
     }
-
-    document.getElementById('AlertaUsuario').classList.add("d-none")
     
     usuarios.push({nomeUsuario: nome, Usuario: usuario, senhaUsuario: senha, paisUsuario: pais})
 
@@ -48,12 +48,15 @@ function Entrar() {
     let s = document.getElementById('Senha_Entrada')
     let senha = s.value 
 
+    document.getElementById('AlertaPreencherEntrar').classList.add("d-none")
+    document.getElementById('AlertaUsuarioInvalido').classList.add("d-none")
+    document.getElementById('AlertaSenhainvalida').classList.add("d-none")
+
     if(u.value.trim() == '' || s.value.trim() == '') {
         document.getElementById('AlertaPreencherEntrar').classList.remove("d-none")
         return
     }
 
-    document.getElementById('AlertaPreencherEntrar').classList.add("d-none")
     let UsuarioLogado = usuarios.find(u => u.Usuario === usuario)
 
     if(!UsuarioLogado){
@@ -62,8 +65,7 @@ function Entrar() {
         return
     }
 
-    document.getElementById('AlertaUsuarioInvalido').classList.add("d-none")
-    sessionStorage.setItem("UsuarioLogado", JSON.stringify(UsuarioLogado));
+    sessionStorage.setItem("UsuarioLogado", JSON.stringify(UsuarioLogado))
 
     if(senha === UsuarioLogado.senhaUsuario){
         sessionStorage.setItem("MostraBoasVindas", "true")
