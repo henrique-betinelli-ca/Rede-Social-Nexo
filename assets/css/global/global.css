@@ -38,12 +38,12 @@ main{
     align-items: center;
     justify-content: center;
 }
-.logo-Nexo{
+.logo-nexo{
     margin: 0 10px;
     width: 100px;
     object-fit: cover;
 }
-.Alerta{
+.alerta{
     margin: 30px 20px;
 }
 .user-post{

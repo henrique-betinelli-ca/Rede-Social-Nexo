@@ -1,65 +1,52 @@
-function Chamaralerta() {
-    let UsuarioLogado = JSON.parse(sessionStorage.getItem("UsuarioLogado"))
-    let mostraAlerta = sessionStorage.getItem("MostraBoasVindas")
-    let postSucesso = sessionStorage.getItem("PostSucesso")
+import { STORAGE_KEYS } from "../global/global.js"
 
-    let MensagemInicio = document.getElementById("MensagemInicio")
+const UsuarioLogado = JSON.parse(sessionStorage.getItem(STORAGE_KEYS.UsuarioLogado))
+const MostraAlerta = sessionStorage.getItem(STORAGE_KEYS.MostraBoasVindas)
+const PostSucesso = sessionStorage.getItem(STORAGE_KEYS.PostSucesso)
 
-    MensagemInicio.innerHTML = ""
+const MensagemInicio = document.getElementById("MensagemInicio")
 
-    if (UsuarioLogado && mostraAlerta === "true") {
-        MensagemInicio.innerHTML = `
-            <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                <strong>Olá ${UsuarioLogado.nomeUsuario}!</strong><br>Bem-vindo ao Nexo, o lugar para compartilhar momentos e se conectar com amigos.
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        `
+MensagemInicio.innerHTML = ""
 
-        sessionStorage.setItem("MostraBoasVindas", "false")
-    }
+UsuarioLogado && MostraAlerta === "true" ? AlertaBoasVindas() : false
+UsuarioLogado && PostSucesso === "true" ? AlertaPostRealizado() : false
 
-    if (UsuarioLogado && postSucesso === "true") {
-        MensagemInicio.innerHTML = `
-            <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                <strong>Post realizado com sucesso!</strong><br>Obrigado ${UsuarioLogado.nomeUsuario} por compartilhar esse momento conosco!
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        `
+function AlertaBoasVindas(){
+    MensagemInicio.innerHTML = `
+        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+            <strong>Olá ${UsuarioLogado.nomeUsuario}!</strong><br>Bem-vindo ao Nexo, o lugar para compartilhar momentos e se conectar com amigos.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    `
 
-        sessionStorage.setItem("PostSucesso", "false")
-    }
+    sessionStorage.setItem(STORAGE_KEYS.MostraBoasVindas, STORAGE_KEYS.false)
 }
 
-function MostrarPost() {
-    let postSalvo = JSON.parse(sessionStorage.getItem("novoPost"))
+function AlertaPostRealizado(){
+    MensagemInicio.innerHTML = `
+        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+            <strong>Post realizado com sucesso!</strong><br>Obrigado ${UsuarioLogado.nomeUsuario} por compartilhar esse momento conosco!
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    `
 
-    if (postSalvo) {
-        let conteudo = `
-            <div class="user-post">
-                <img src="assets/imagens/user/Usuario qualquer" class="foto-user-inicio">
-                <h4>@${postSalvo.usuario}</h4>
-            </div>
-            <div>
-                <img class="foto-post-inicio" src="assets/imagens/post/Cozinhando.jpg">
-            </div>
-            <div>
-                <p><strong>@${postSalvo.usuario}</strong>: ${postSalvo.legenda}</p>
-            </div>
-        `
-
-        let postInicio = document.getElementById("PostInicio")
-        if (postInicio) {
-            postInicio.innerHTML = conteudo
-        }
-
-        let postPerfil = document.getElementById("PostPerfil")
-        if (postPerfil) {
-            postPerfil.innerHTML = conteudo
-        }
-    }
+    sessionStorage.setItem(STORAGE_KEYS.PostSucesso, STORAGE_KEYS.false)
 }
 
-window.addEventListener("load", () => {
-    Chamaralerta();
-    MostrarPost();
-});
+let PostSalvo = JSON.parse(sessionStorage.getItem(STORAGE_KEYS.novoPost))
+let postInicio = document.getElementById("PostInicio")
+
+if (PostSalvo) {
+    postInicio.innerHTML = `
+        <div class="user-post">
+            <img src="assets/imagens/user/Usuario qualquer" class="foto-user-inicio">
+            <h4>@${PostSalvo.usuario}</h4>
+        </div>
+        <div>
+            <img class="foto-post-inicio" src="assets/imagens/post/Cozinhando.jpg">
+        </div>
+        <div>
+            <p><strong>@${PostSalvo.usuario}</strong>: ${PostSalvo.legenda}</p>
+        </div>
+    `
+}

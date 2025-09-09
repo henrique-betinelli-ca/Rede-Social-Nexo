@@ -1,81 +1,111 @@
-import { limparCampos, usuarios } from '../global/global.js'
+import { limparCampos, Usuarios, RedirecionarInicio, STORAGE_KEYS } from '../global/global.js'
 
-function Cadastrar() {
-    let n = document.getElementById('Nome_Cadrastro')
-    let nome = n.value
+let NomeLogin = document.getElementById('Nome_Cadrastro')
+let UsuarioLogin = document.getElementById('Usuario_Cadrastro')
+let SenhaLogin = document.getElementById('Senha_Cadrastro')
+let PaisLogin = document.getElementById('Pais_Cadrastro')
 
-    let u = document.getElementById('Usuario_Cadrastro')
-    let usuario = u.value 
-
-    let s = document.getElementById('Senha_Cadrastro')
-    let senha = s.value 
-
-    let p = document.getElementById('Pais_Cadrastro')
-    let pais = p.value
-
-    document.getElementById('AlertaPreencherCadastro').classList.add("d-none")
-    document.getElementById('AlertaUsuario').classList.add("d-none")
-
-    if(n.value.trim() == '' || u.value.trim() == '' || s.value.trim() == '' || p.value.trim() == '') {
-        document.getElementById('AlertaPreencherCadastro').classList.remove("d-none")
-        return
-    }
-
-    let user = usuarios.find(u => u.Usuario === usuario)
-    
-    if(user){
-        document.getElementById('AlertaUsuario').classList.remove("d-none")
-        limparCampos(u)
-        return
-    }
-    
-    usuarios.push({nomeUsuario: nome, Usuario: usuario, senhaUsuario: senha, paisUsuario: pais})
-
-    sessionStorage.setItem("usuarios", JSON.stringify(usuarios))
-    sessionStorage.setItem("UsuarioLogado", JSON.stringify({nomeUsuario: nome, Usuario: usuario, senhaUsuario: senha, paisUsuario: pais}));
-    sessionStorage.setItem("MostraBoasVindas", "true")
-    
-    limparCampos(u, n, s, p)
-    sessionStorage.removeItem("novoPost")
-
-    location.href = 'inicial.html'
+function GetNomeLogin() {
+  return NomeLogin.value
+}
+function GetUsuarioLogin() {
+  return UsuarioLogin.value
+}
+function GetSenhaLogin() {
+  return SenhaLogin.value
+}
+function GetPaisLogin() {
+  return PaisLogin.value
 }
 
+function TemCamposValidosCadastrar() {
+  return GetNomeLogin().trim() !== "" && GetUsuarioLogin().trim() !== "" && GetSenhaLogin().trim() !== "" && GetPaisLogin().trim() !== "" 
+} 
+
+function ExisteEsteUsuario(VerificarUsuario){
+  let UsuarioEncontrado = Usuarios.find(u => u.Usuario === VerificarUsuario)
+  return UsuarioEncontrado
+}
+
+function SalvarDadosLogin(){
+  const UsuarioLogado = {nomeUsuario: GetNomeLogin(), Usuario: GetUsuarioLogin(), senhaUsuario: GetSenhaLogin(), paisUsuario: GetPaisLogin()}
+  Usuarios.push(UsuarioLogado)
+  sessionStorage.setItem(STORAGE_KEYS.Usuarios, JSON.stringify(Usuarios))
+  sessionStorage.setItem(STORAGE_KEYS.UsuarioLogado, JSON.stringify(UsuarioLogado));
+  sessionStorage.setItem(STORAGE_KEYS.MostraBoasVindas, STORAGE_KEYS.true)
+}
+
+function Cadastrar() {
+  document.getElementById('AlertaPreencherCadastro').classList.add("d-none")
+  document.getElementById('AlertaUsuario').classList.add("d-none")
+
+  if(!TemCamposValidosCadastrar()){
+    document.getElementById('AlertaPreencherCadastro').classList.remove("d-none")
+    return
+  }
+    
+  if(ExisteEsteUsuario(GetUsuarioLogin())){
+    document.getElementById('AlertaUsuario').classList.remove("d-none")
+    limparCampos(UsuarioLogin)
+    return
+  }
+
+  SalvarDadosLogin()
+  limparCampos(NomeLogin, UsuarioLogin, SenhaLogin, PaisLogin )
+
+  sessionStorage.removeItem(STORAGE_KEYS.novoPost)
+
+  RedirecionarInicio()
+}
+
+let UsuarioEntrar = document.getElementById('Usuario_Entrada')
+let SenhaEntrar = document.getElementById('Senha_Entrada')
+
+function GetUsuarioEntrar() {
+  return UsuarioEntrar.value
+}
+
+function GetSenhaEntrar() {
+  return SenhaEntrar.value
+}
+
+function TemCamposValidosEntrar() {
+  return GetUsuarioEntrar().trim() !== "" && GetSenhaEntrar().trim() !== "" 
+} 
+
+function VerificarSenhaUsuarioEntrar(){
+  let GetUsuario = Usuarios.find(u => u.Usuario === GetUsuarioEntrar())
+  sessionStorage.setItem(STORAGE_KEYS.UsuarioLogado, JSON.stringify(GetUsuario))
+  return GetSenhaEntrar() === GetUsuario.senhaUsuario
+}
+
+
 function Entrar() {
-    let u = document.getElementById('Usuario_Entrada')
-    let usuario = u.value 
+  document.getElementById('AlertaPreencherEntrar').classList.add("d-none")
+  document.getElementById('AlertaUsuarioInvalido').classList.add("d-none")
+  document.getElementById('AlertaSenhainvalida').classList.add("d-none")
 
-    let s = document.getElementById('Senha_Entrada')
-    let senha = s.value 
+  if(!TemCamposValidosEntrar()){
+    document.getElementById('AlertaPreencherEntrar').classList.remove("d-none")
+    return
+  }
 
-    document.getElementById('AlertaPreencherEntrar').classList.add("d-none")
-    document.getElementById('AlertaUsuarioInvalido').classList.add("d-none")
-    document.getElementById('AlertaSenhainvalida').classList.add("d-none")
+  if(!ExisteEsteUsuario(GetUsuarioEntrar())){
+    document.getElementById('AlertaUsuarioInvalido').classList.remove("d-none")
+    limparCampos(UsuarioEntrar, SenhaEntrar)
+    return
+  }
 
-    if(u.value.trim() == '' || s.value.trim() == '') {
-        document.getElementById('AlertaPreencherEntrar').classList.remove("d-none")
-        return
-    }
+  if(VerificarSenhaUsuarioEntrar()){
+    sessionStorage.setItem(STORAGE_KEYS.MostraBoasVindas, STORAGE_KEYS.true)
+    sessionStorage.removeItem(STORAGE_KEYS.novoPost)
+    limparCampos(UsuarioEntrar, SenhaEntrar)
+    RedirecionarInicio()
 
-    let UsuarioLogado = usuarios.find(u => u.Usuario === usuario)
-
-    if(!UsuarioLogado){
-        document.getElementById('AlertaUsuarioInvalido').classList.remove("d-none")
-        limparCampos(u, s)
-        return
-    }
-
-    sessionStorage.setItem("UsuarioLogado", JSON.stringify(UsuarioLogado))
-
-    if(senha === UsuarioLogado.senhaUsuario){
-        sessionStorage.setItem("MostraBoasVindas", "true")
-        sessionStorage.removeItem("novoPost")
-        location.href = 'inicial.html'
-
-    } else {
-        document.getElementById('AlertaSenhainvalida').classList.remove("d-none")
-        limparCampos(s);
-    }
+  } else {
+    document.getElementById('AlertaSenhainvalida').classList.remove("d-none")
+    limparCampos(SenhaEntrar)
+  }
 }
 
 document.getElementById("btnCadastrar").addEventListener("click", Cadastrar);

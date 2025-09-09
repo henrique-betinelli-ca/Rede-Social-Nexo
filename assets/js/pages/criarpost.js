@@ -1,20 +1,48 @@
+import { RedirecionarInicio, STORAGE_KEYS} from '../global/global.js'
+
+const FotoInput = document.getElementById("fotoPost")
+const LegendaInput = document.getElementById("legendaPost")
+
+function getLegenda() {
+  return (LegendaInput.value);
+}
+
+function getFoto() {
+  return (FotoInput.value.trim);
+}
+
+function temCamposValidos() {
+  getFoto() !== "" && getLegenda() !== "";
+}
+
+function mostrarAlerta() {
+  document.getElementById("AlertaPreencherPost").classList.remove("d-none");
+}
+
+function getUsuarioLogado() {
+  const usuarioJSON = sessionStorage.getItem(STORAGE_KEYS.UsuarioLogado);
+  return usuarioJSON ? JSON.parse(usuarioJSON) : null;
+}
+
+function salvarPost(novoPost) {
+  sessionStorage.setItem(STORAGE_KEYS.novoPost, JSON.stringify(novoPost));
+  sessionStorage.setItem(STORAGE_KEYS.PostSucesso, STORAGE_KEYS.true);
+}
+
 function PostarFoto() {
-    let f = document.getElementById("fotoPost")
-    let l = document.getElementById("legendaPost")
-    let legenda = l.value
+  if (temCamposValidos()) {
+    mostrarAlerta();
+    return;
+  }
 
-    if(f.value.trim() == '' || l.value.trim() == ''){
-        document.getElementById('AlertaPreencherPost').classList.remove("d-none")
-        return
-    }
+  const usuarioLogado = getUsuarioLogado();
+  const novoPost = {
+    usuario: usuarioLogado.Usuario,
+    legenda: getLegenda(),
+  };
 
-    let UsuarioLogado = JSON.parse(sessionStorage.getItem("UsuarioLogado"))
-    let novoPost = {usuario: UsuarioLogado.Usuario, legenda: legenda}
-
-    sessionStorage.setItem("novoPost", JSON.stringify(novoPost))
-    sessionStorage.setItem("PostSucesso", "true")
-
-    location.href = 'inicial.html'
+  salvarPost(novoPost);
+  RedirecionarInicio();
 }
 
 document.getElementById("btnPostarFoto").addEventListener("click", PostarFoto);
