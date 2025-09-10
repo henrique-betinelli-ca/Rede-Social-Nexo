@@ -1,8 +1,8 @@
-import { STORAGE_KEYS } from "../global/global.js"
+import { StorageKeys } from "../global/global.js"
 
-const UsuarioLogado = JSON.parse(sessionStorage.getItem(STORAGE_KEYS.UsuarioLogado))
-const MostraAlerta = sessionStorage.getItem(STORAGE_KEYS.MostraBoasVindas)
-const PostSucesso = sessionStorage.getItem(STORAGE_KEYS.PostSucesso)
+const UsuarioLogado = JSON.parse(sessionStorage.getItem(StorageKeys.UsuarioLogado))
+const MostraAlerta = sessionStorage.getItem(StorageKeys.MostraBoasVindas)
+const PostSucesso = sessionStorage.getItem(StorageKeys.PostSucesso)
 
 const MensagemInicio = document.getElementById("MensagemInicio")
 
@@ -19,7 +19,7 @@ function AlertaBoasVindas(){
         </div>
     `
 
-    sessionStorage.setItem(STORAGE_KEYS.MostraBoasVindas, STORAGE_KEYS.false)
+    sessionStorage.setItem(StorageKeys.MostraBoasVindas, StorageKeys.false)
 }
 
 function AlertaPostRealizado(){
@@ -30,10 +30,10 @@ function AlertaPostRealizado(){
         </div>
     `
 
-    sessionStorage.setItem(STORAGE_KEYS.PostSucesso, STORAGE_KEYS.false)
+    sessionStorage.setItem(StorageKeys.PostSucesso, StorageKeys.false)
 }
 
-let PostSalvo = JSON.parse(sessionStorage.getItem(STORAGE_KEYS.novoPost))
+let PostSalvo = JSON.parse(sessionStorage.getItem(StorageKeys.novoPost))
 let postInicio = document.getElementById("PostInicio")
 
 if (PostSalvo) {

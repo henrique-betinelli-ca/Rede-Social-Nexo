@@ -1,47 +1,47 @@
-import { RedirecionarInicio, STORAGE_KEYS} from '../global/global.js'
+import { RedirecionarInicio, StorageKeys} from '../global/global.js'
 
 const FotoInput = document.getElementById("fotoPost")
 const LegendaInput = document.getElementById("legendaPost")
 
-function getLegenda() {
+function GetLegenda() {
   return (LegendaInput.value);
 }
 
-function getFoto() {
+function GetFoto() {
   return (FotoInput.value.trim);
 }
 
-function temCamposValidos() {
-  getFoto() !== "" && getLegenda() !== "";
+function TemCamposValidos() {
+  GetFoto() !== "" && GetLegenda() !== "";
 }
 
-function mostrarAlerta() {
+function MostrarAlerta() {
   document.getElementById("AlertaPreencherPost").classList.remove("d-none");
 }
 
-function getUsuarioLogado() {
-  const usuarioJSON = sessionStorage.getItem(STORAGE_KEYS.UsuarioLogado);
+function GetUsuarioLogado() {
+  const usuarioJSON = sessionStorage.getItem(StorageKeys.UsuarioLogado);
   return usuarioJSON ? JSON.parse(usuarioJSON) : null;
 }
 
-function salvarPost(novoPost) {
-  sessionStorage.setItem(STORAGE_KEYS.novoPost, JSON.stringify(novoPost));
-  sessionStorage.setItem(STORAGE_KEYS.PostSucesso, STORAGE_KEYS.true);
+function SalvarPost(novoPost) {
+  sessionStorage.setItem(StorageKeys.novoPost, JSON.stringify(novoPost));
+  sessionStorage.setItem(StorageKeys.PostSucesso, StorageKeys.true);
 }
 
 function PostarFoto() {
-  if (temCamposValidos()) {
-    mostrarAlerta();
+  if (TemCamposValidos()) {
+    MostrarAlerta();
     return;
   }
 
-  const usuarioLogado = getUsuarioLogado();
+  const usuarioLogado = GetUsuarioLogado();
   const novoPost = {
     usuario: usuarioLogado.Usuario,
-    legenda: getLegenda(),
+    legenda: GetLegenda(),
   };
 
-  salvarPost(novoPost);
+  SalvarPost(novoPost);
   RedirecionarInicio();
 }
 

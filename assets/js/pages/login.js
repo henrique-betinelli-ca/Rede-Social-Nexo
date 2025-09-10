@@ -1,4 +1,4 @@
-import { limparCampos, Usuarios, RedirecionarInicio, STORAGE_KEYS } from '../global/global.js'
+import { LimparCampos, Usuarios, RedirecionarInicio, StorageKeys } from '../global/global.js'
 
 let NomeLogin = document.getElementById('Nome_Cadrastro')
 let UsuarioLogin = document.getElementById('Usuario_Cadrastro')
@@ -30,9 +30,9 @@ function ExisteEsteUsuario(VerificarUsuario){
 function SalvarDadosLogin(){
   const UsuarioLogado = {nomeUsuario: GetNomeLogin(), Usuario: GetUsuarioLogin(), senhaUsuario: GetSenhaLogin(), paisUsuario: GetPaisLogin()}
   Usuarios.push(UsuarioLogado)
-  sessionStorage.setItem(STORAGE_KEYS.Usuarios, JSON.stringify(Usuarios))
-  sessionStorage.setItem(STORAGE_KEYS.UsuarioLogado, JSON.stringify(UsuarioLogado));
-  sessionStorage.setItem(STORAGE_KEYS.MostraBoasVindas, STORAGE_KEYS.true)
+  sessionStorage.setItem(StorageKeys.Usuarios, JSON.stringify(Usuarios))
+  sessionStorage.setItem(StorageKeys.UsuarioLogado, JSON.stringify(UsuarioLogado));
+  sessionStorage.setItem(StorageKeys.MostraBoasVindas, StorageKeys.true)
 }
 
 function Cadastrar() {
@@ -46,14 +46,14 @@ function Cadastrar() {
     
   if(ExisteEsteUsuario(GetUsuarioLogin())){
     document.getElementById('AlertaUsuario').classList.remove("d-none")
-    limparCampos(UsuarioLogin)
+    LimparCampos(UsuarioLogin)
     return
   }
 
   SalvarDadosLogin()
-  limparCampos(NomeLogin, UsuarioLogin, SenhaLogin, PaisLogin )
+  LimparCampos(NomeLogin, UsuarioLogin, SenhaLogin, PaisLogin )
 
-  sessionStorage.removeItem(STORAGE_KEYS.novoPost)
+  sessionStorage.removeItem(StorageKeys.novoPost)
 
   RedirecionarInicio()
 }
@@ -75,7 +75,7 @@ function TemCamposValidosEntrar() {
 
 function VerificarSenhaUsuarioEntrar(){
   let GetUsuario = Usuarios.find(u => u.Usuario === GetUsuarioEntrar())
-  sessionStorage.setItem(STORAGE_KEYS.UsuarioLogado, JSON.stringify(GetUsuario))
+  sessionStorage.setItem(StorageKeys.UsuarioLogado, JSON.stringify(GetUsuario))
   return GetSenhaEntrar() === GetUsuario.senhaUsuario
 }
 
@@ -92,19 +92,19 @@ function Entrar() {
 
   if(!ExisteEsteUsuario(GetUsuarioEntrar())){
     document.getElementById('AlertaUsuarioInvalido').classList.remove("d-none")
-    limparCampos(UsuarioEntrar, SenhaEntrar)
+    LimparCampos(UsuarioEntrar, SenhaEntrar)
     return
   }
 
   if(VerificarSenhaUsuarioEntrar()){
-    sessionStorage.setItem(STORAGE_KEYS.MostraBoasVindas, STORAGE_KEYS.true)
-    sessionStorage.removeItem(STORAGE_KEYS.novoPost)
-    limparCampos(UsuarioEntrar, SenhaEntrar)
+    sessionStorage.setItem(StorageKeys.MostraBoasVindas, StorageKeys.true)
+    sessionStorage.removeItem(StorageKeys.novoPost)
+    LimparCampos(UsuarioEntrar, SenhaEntrar)
     RedirecionarInicio()
 
   } else {
     document.getElementById('AlertaSenhainvalida').classList.remove("d-none")
-    limparCampos(SenhaEntrar)
+    LimparCampos(SenhaEntrar)
   }
 }
 

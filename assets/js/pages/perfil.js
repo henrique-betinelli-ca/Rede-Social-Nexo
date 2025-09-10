@@ -1,7 +1,7 @@
-import { Posts, STORAGE_KEYS } from "../global/global.js"
+import { Posts, StorageKeys } from "../global/global.js"
 
-const UsuarioLogado = JSON.parse(sessionStorage.getItem(STORAGE_KEYS.UsuarioLogado))
-let PostSalvo = JSON.parse(sessionStorage.getItem(STORAGE_KEYS.novoPost))
+const UsuarioLogado = JSON.parse(sessionStorage.getItem(StorageKeys.UsuarioLogado))
+let PostSalvo = JSON.parse(sessionStorage.getItem(StorageKeys.novoPost))
 
 document.getElementById("NomeUsuarioPerfil").textContent = UsuarioLogado.nomeUsuario
 document.getElementById("PaisUsuarioPerfil").textContent = UsuarioLogado.paisUsuario

@@ -4,7 +4,7 @@ export let Usuarios = [
     {nomeUsuario: "Henrique Betinelli", Usuario: "henrique_bet", senhaUsuario: "123", paisUsuario: "Brasil"}
 ]
 
-export function limparCampos(...inputs) {
+export function LimparCampos(...inputs) {
     inputs.forEach(input => input.value = '')
     return
 }
@@ -15,7 +15,7 @@ export function RedirecionarInicio(){
     location.href = 'inicial.html'
 }
 
-export const STORAGE_KEYS = {
+export const StorageKeys = {
     UsuarioLogado: 'UsuarioLogado',
     novoPost: 'novoPost',
     PostSucesso: 'PostSucesso',
