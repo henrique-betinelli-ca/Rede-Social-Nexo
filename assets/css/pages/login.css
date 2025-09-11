@@ -1,0 +1,16 @@
+@import '../global/global.css';
+
+.area-cadastro{
+    width: 450px;
+}
+.menu-inicio{ 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10%;
+}
+.area-entrar{
+    margin-top: 50px;
+    width: 450px;
+}
