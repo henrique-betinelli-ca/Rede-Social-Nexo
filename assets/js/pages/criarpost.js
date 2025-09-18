@@ -1,14 +1,14 @@
-import { RedirecionarInicio, StorageKeys} from '../global/global.js'
+import { RedirecionarInicio, StorageKeys } from "../global/global.js";
 
-const FotoInput = document.getElementById("fotoPost")
-const LegendaInput = document.getElementById("legendaPost")
+const FotoInput = document.getElementById("fotoPost");
+const LegendaInput = document.getElementById("legendaPost");
 
 function GetLegenda() {
-  return (LegendaInput.value);
+  return LegendaInput.value;
 }
 
 function GetFoto() {
-  return (FotoInput.value.trim);
+  return FotoInput.value.trim;
 }
 
 function TemCamposValidos() {
